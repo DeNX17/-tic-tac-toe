@@ -1,80 +1,42 @@
 const initialState = {
-	fields: [
-		{
-			id: 0,
-			status: false,
-			bomb: false
-		},
-		{
-			id: 1,
-			status: false,
-			bomb: false
-		},
-		{
-			id: 2,
-			status: false,
-			bomb: false
-		},
-		{
-			id: 3,
-			status: false,
-			bomb: false
-		},
-	],
-	resultGame: false,
-	amountFields: 4
+	fields: [],
+	turn: 'cross',
+	gameStatus: false
 };
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'PICK_ITEM':
-			let end = false;
-			return {
-				...state,
-				fields: state.fields.map((item) => {
-					if(item.id === action.payload) {
-						if(item.bomb) {end = true; }
-						return {
-							...item,
-							status: true
-						}
-					}
-					return item;
-				}),
-				resultGame: end
-			};
+		case 'CREATE_FIELDS':
+			let arrFields = [];
 
-		case 'MINING_FIELD':
-			const randNum = Math.floor(Math.random()*state.fields.length);
-			return {
-				...state,
-				fields: state.fields.map((item) => {
-					if(item.id === randNum) {
-						return {
-							...item,
-							bomb: true,
-						}
-					}
-					return item;
-				})
-			}
-
-		case 'REFRESH_GAME':
-			const rand = Math.floor(Math.random()*state.fields.length);
-			let fields = [];
-			for (let i = 0; i < state.amountFields; i++) {
-				if(i === rand) { fields.push({id: i, status: false, bomb: true}); continue }
-				fields.push({
+			for (let i = 0; i < 9; i++) {
+				arrFields.push({
 					id: i,
 					status: false,
-					bomb: false
+					value: null
 				});
 			}
 			return {
 				...state,
-				fields: fields,
-				resultGame: false
+				fields: arrFields
 			}
+
+		case 'ITEM_SELECTION':
+
+			return {
+				...state
+			}
+
+		case 'CHECK_WINNER':
+			return {
+				...state
+			}
+		
+		case 'CHANGE_TURN':
+			return {
+				...state
+			}
+
 		default: 
 			return state;
 	}

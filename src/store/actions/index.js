@@ -1,24 +1,31 @@
-const pickItem = (id) => {
+const createFields = () => {
 	return {
-		type: 'PICK_ITEM',
-		payload: id
+		type: 'CREATE_FIELDS'
 	};
 };
 
-const miningField = () => {
+const itemSelection = (id) => {
 	return {
-		type: 'MINING_FIELD'
+		type: 'ITEM_SELECTION',
+		payload: id
 	}
 }
 
-const refreshGame = () => {
+const checkWinner = () => {
 	return {
-		type: 'REFRESH_GAME'
+		type: 'CHECK_WINNER'
+	}
+}
+
+const changeTurn = () => {
+	return {
+		type: 'CHANGE_TURN'
 	}
 }
 
 export {
-	pickItem,
-	miningField,
-	refreshGame
+	createFields,
+	itemSelection,
+	checkWinner,
+	changeTurn
 };
