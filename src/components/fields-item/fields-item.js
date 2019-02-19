@@ -1,14 +1,25 @@
 import React from 'react';
 
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+import {itemSelection, checkWinner} from '../../store/actions/';
+
+
 class FieldsItem extends React.Component {
 	state = {
 		classEl: ''
 	}
-
+	
+	componentDidMount = () => {
+		//console.log(this.props)
+	}
 	pick = () => {
 		this.setState({
-			classEl: 'cross'
+			classEl: this.props.turn
 		});
+		this.props.itemSelection(this.props.id);
+		this.props.checkWinner();
 	}
 
 	render () {
@@ -21,4 +32,14 @@ class FieldsItem extends React.Component {
 	}
 }
 
-export default FieldsItem;
+const mapStateToProps = ({turn}) => {
+	return {turn}
+}
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators({
+		itemSelection,
+		checkWinner
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FieldsItem);

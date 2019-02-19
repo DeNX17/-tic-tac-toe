@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {createFields} from '../../store/actions/';
 
 import Fields from '../fields/fields.js';
+import GameOver from '../game-over/game-over.js';
 
 class App extends React.Component {
 
@@ -12,13 +13,13 @@ class App extends React.Component {
   }
 
   render() {
-    // Render table component
-    // Add .zero styles
-    // event pick (zero and cross)
-    // 
+    if (this.props.gameStatus) {
+      return <GameOver result={this.props.gameStatus} restart={this.props.createFields} />;
+    }
 
     return (
       <div className="container">
+        <p>{this.props.gameStatus}</p>
         <Fields fields={this.props.fields} />
       </div>
     )
@@ -31,9 +32,10 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-const mapStateToProps = ({fields}) => {
+const mapStateToProps = ({fields, gameStatus}) => {
   return {
-    fields
+    fields,
+    gameStatus
   };
 }
 
