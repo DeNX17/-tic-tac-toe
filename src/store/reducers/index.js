@@ -41,6 +41,12 @@ const reducer = (state = initialState, action) => {
 		case 'ITEM_SELECTION_COMP':
 			let fieldsCloned = state.fields;
 			let arrNull = state.fields.filter(item => item.value === null);
+			if(arrNull.length === 0){
+				return{
+					...state
+				};
+			}
+
 			let randNumber = Math.floor(Math.random()* arrNull.length);
 			let idx = arrNull[randNumber].id;
 			
@@ -58,6 +64,7 @@ const reducer = (state = initialState, action) => {
 			let arr = fields.filter(item => item.value === null);
 
 			if (arr.length === 0) { gameStatus = 'Draw'; }
+
 			if (fields[0].value != null) {
 				if(fields[0].value === fields[1].value && fields[1].value === fields[2].value) { gameStatus = fields[0].value; }
 				if(fields[0].value === fields[4].value && fields[4].value === fields[8].value) { gameStatus = fields[0].value; }
