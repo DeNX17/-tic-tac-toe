@@ -3,7 +3,12 @@ import './style.css';
 
 const GameOver = ({result, restart}) => {
 	if (result === 'Draw') {
-		return <p className="result">!-- DRAW --!</p>
+		return (
+			<div className="container">
+				<p className="result">!-- DRAW --!</p>
+				<button onClick={restart}>Restart</button>
+			</div>
+		);
 	}
 
 	return (
