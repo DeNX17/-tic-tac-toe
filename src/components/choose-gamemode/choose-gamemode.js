@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 class ChooseGamemode extends React.Component {
 	state = {
@@ -13,7 +14,7 @@ class ChooseGamemode extends React.Component {
 
 	render() {
 		return (
-		<div className="container">
+		<div className="container chooseGamemode">
 			<h2>Select game mode</h2>
 			<select onChange={this.selectMode} value={this.state.selectMode}>
 				<option value="player">2 players</option>

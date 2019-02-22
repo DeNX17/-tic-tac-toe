@@ -17,11 +17,9 @@ class FieldsItem extends React.Component {
 
 		if(this.props.gameMod === 'comp') {
 			this.props.itemSelectionComp();
-			
 			this.props.checkWinner();
 		}
 	}
-
 
 	render () {
 		return (

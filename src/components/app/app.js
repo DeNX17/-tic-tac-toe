@@ -5,7 +5,7 @@ import {createFields, chooseGamemode, itemSelectionComp} from '../../store/actio
 
 import Fields from '../fields/fields.js';
 import GameOver from '../game-over/';
-import ChooseGamemode from '../choose-gamemode/choose-gamemode.js';
+import ChooseGamemode from '../choose-gamemode/';
 
 class App extends React.Component {
 

@@ -3,7 +3,8 @@ const initialState = {
 	turn: 'cross', // zero and cross
 	gameStatus: false,
 	gameMod: undefined,
-	testStatus: false
+	testStatus: false,
+	isTurnDone: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,21 +27,27 @@ const reducer = (state = initialState, action) => {
 		case 'ITEM_SELECTION':
 			let fieldsClone = state.fields;
 			let turn = state.turn;
-			
-			fieldsClone[action.payload].value = turn;
+			let isTurnDone = state.isTurnDone;
 
-			if(state.gameMod === 'player'){
-				turn = state.turn === 'cross' ? 'zero' : 'cross';
+			if (fieldsClone[action.payload].value === null) {
+				fieldsClone[action.payload].value = turn;
+				isTurnDone = true;
+				if(state.gameMod === 'player'){
+					turn = state.turn === 'cross' ? 'zero' : 'cross';
+				}
 			}
 
 			return {
 				...state,
 				fields: fieldsClone,
-				turn: turn
+				turn: turn,
+				isTurnDone: isTurnDone
 			}
 		case 'ITEM_SELECTION_COMP':
 			let fieldsCloned = state.fields;
 			let arrNull = state.fields.filter(item => item.value === null);
+			let isTurnDone1 = state.isTurnDone;
+
 			if(arrNull.length === 0){
 				return{
 					...state
@@ -50,12 +57,16 @@ const reducer = (state = initialState, action) => {
 			let randNumber = Math.floor(Math.random()* arrNull.length);
 			let idx = arrNull[randNumber].id;
 			
-			fieldsCloned[idx].value = 'zero';
+			if (isTurnDone1 === true) {
+				fieldsCloned[idx].value = 'zero';
+				isTurnDone1 = false;
+			}
 
 			return {
 				...state,
 				fields: fieldsCloned,
-				testStatus: !state.testStatus
+				testStatus: !state.testStatus,
+				isTurnDone: isTurnDone1
 			}
 
 		case 'CHECK_WINNER':
