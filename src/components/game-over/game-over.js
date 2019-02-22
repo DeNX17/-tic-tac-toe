@@ -1,16 +1,17 @@
 import React from 'react';
+import './style.css';
 
-const gameOver = ({result, restart}) => {
+const GameOver = ({result, restart}) => {
 	if (result === 'Draw') {
-		return <p>!-- DRAW --!</p>
+		return <p className="result">!-- DRAW --!</p>
 	}
 
 	return (
 		<div className="container">
-			<p>{result}'s winner</p>
+			<p className="result">{result} winner</p>
 			<button onClick={restart}>Restart</button>
 		</div>
 	);
 }
 
-export default gameOver;
+export default GameOver;

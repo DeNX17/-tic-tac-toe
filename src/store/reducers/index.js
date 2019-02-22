@@ -1,7 +1,9 @@
 const initialState = {
-	fields: [],
-	turn: 'cross',
-	gameStatus: false
+	fields: [], // id, status, value
+	turn: 'cross', // zero and cross
+	gameStatus: false,
+	gameMod: undefined,
+	testStatus: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,7 +14,6 @@ const reducer = (state = initialState, action) => {
 			for (let i = 0; i < 9; i++) {
 				arrFields.push({
 					id: i,
-					status: false,
 					value: null
 				});
 			}
@@ -23,23 +24,39 @@ const reducer = (state = initialState, action) => {
 			}
 
 		case 'ITEM_SELECTION':
-			// get id field
 			let fieldsClone = state.fields;
-			let turn = state.turn === 'cross' ? 'zero' : 'cross';
+			let turn = state.turn;
+			
+			fieldsClone[action.payload].value = turn;
 
-			fieldsClone[action.payload]['value'] = state.turn;
+			if(state.gameMod === 'player'){
+				turn = state.turn === 'cross' ? 'zero' : 'cross';
+			}
 
 			return {
 				...state,
-				fieldsClone,
+				fields: fieldsClone,
 				turn: turn
+			}
+		case 'ITEM_SELECTION_COMP':
+			let fieldsCloned = state.fields;
+			let arrNull = state.fields.filter(item => item.value === null);
+			let randNumber = Math.floor(Math.random()* arrNull.length);
+			let idx = arrNull[randNumber].id;
+			
+			fieldsCloned[idx].value = 'zero';
+
+			return {
+				...state,
+				fields: fieldsCloned,
+				testStatus: !state.testStatus
 			}
 
 		case 'CHECK_WINNER':
 			let fields = state.fields;
 			let gameStatus = state.gameStatus;
 			let arr = fields.filter(item => item.value === null);
-			
+
 			if (arr.length === 0) { gameStatus = 'Draw'; }
 			if (fields[0].value != null) {
 				if(fields[0].value === fields[1].value && fields[1].value === fields[2].value) { gameStatus = fields[0].value; }
@@ -57,15 +74,16 @@ const reducer = (state = initialState, action) => {
 				if(fields[8].value === fields[2].value && fields[2].value === fields[5].value) { gameStatus = fields[8].value; }
 				if(fields[8].value === fields[6].value && fields[6].value === fields[7].value) { gameStatus = fields[8].value; }
 			}
-
+	
 			return {
 				...state,
 				gameStatus
 			}
 		
-		case 'CHANGE_TURN':
+		case 'CHOOSE_GAMEMODE':
 			return {
-				...state
+				...state,
+				gameMod: action.payload
 			}
 
 		default: 
