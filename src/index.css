@@ -49,6 +49,7 @@ code {
   top: 65px;
   right: 0px;
   transform: rotate(45deg);
+  border-radius: 50px;
 }
 
 .cross::before {
@@ -60,6 +61,7 @@ code {
   top: 65px;
   right: 0px;
   transform: rotate(-45deg);
+  border-radius: 50px;
 }
 
 .zero {
@@ -75,14 +77,19 @@ code {
   top: 10px;
   right: 10px;
 }
-/*
-.zero::before {
-  width: 150px;
-  height: 0px;
-  background-color: red;
-  content: '';
-  position: absolute;
-  top: 65px;
-  right: 0px;
-}*/
 
+.turn {
+  font-size: 23px;
+}
+
+.crossText {
+  font-size: 23px;
+  color: green;
+  font-weight: 600;
+}
+
+.zeroText {
+  font-size: 23px;
+  color: grey;
+  font-weight: 600;
+}

@@ -11,21 +11,29 @@ const itemSelection = (id) => {
 	}
 }
 
+const itemSelectionComp = () => {
+	return {
+		type: 'ITEM_SELECTION_COMP'
+	}
+}
+
 const checkWinner = () => {
 	return {
 		type: 'CHECK_WINNER'
 	}
 }
 
-const changeTurn = () => {
+const chooseGamemode = (mode) => {
 	return {
-		type: 'CHANGE_TURN'
+		type: 'CHOOSE_GAMEMODE',
+		payload: mode
 	}
 }
 
 export {
 	createFields,
 	itemSelection,
+	itemSelectionComp,
 	checkWinner,
-	changeTurn
+	chooseGamemode
 };
