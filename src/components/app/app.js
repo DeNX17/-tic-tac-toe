@@ -6,6 +6,7 @@ import {createFields, chooseGamemode, itemSelectionComp} from '../../store/actio
 import Fields from '../fields/fields.js';
 import GameOver from '../game-over/';
 import ChooseGamemode from '../choose-gamemode/';
+import Menu from '../menu/menu.js';
 
 class App extends React.Component {
 
@@ -27,6 +28,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <p className={turnClassName}>Ход - {this.props.turn}</p>
+        <div className="menu"><Menu chooseGamemode={this.props.chooseGamemode} /></div>
         <Fields fields={this.props.fields} testStatus={this.props.testStatus}/>
       </div>
     )

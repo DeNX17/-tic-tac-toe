@@ -101,6 +101,7 @@ const reducer = (state = initialState, action) => {
 		case 'CHOOSE_GAMEMODE':
 			return {
 				...state,
+				turn: "cross",
 				gameMod: action.payload
 			}
 
