@@ -12,6 +12,11 @@ class ChooseGamemode extends React.Component {
 		});
 	}
 
+	chooseGamemode = () => {
+		this.props.chooseGamemode(this.state.selectedMode);
+		this.props.createFields();
+	}
+
 	render() {
 		return (
 		<div className="container chooseGamemode">
@@ -21,7 +26,7 @@ class ChooseGamemode extends React.Component {
 			  <option value="comp">With comp</option>
 			</select>
 			<br/>
-			<button onClick={() => this.props.chooseGamemode(this.state.selectedMode)}>Start</button>
+			<button onClick={this.chooseGamemode}>Start</button>
 		</div>
 		);
 	}

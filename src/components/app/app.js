@@ -20,7 +20,7 @@ class App extends React.Component {
     }
 
     if (!this.props.gameMod) {
-      return <ChooseGamemode chooseGamemode={this.props.chooseGamemode}/>
+      return <ChooseGamemode chooseGamemode={this.props.chooseGamemode} createFields={this.props.createFields}/>
     }
 
     const turnClassName = this.props.turn === 'cross' ? 'crossText' : 'zeroText';

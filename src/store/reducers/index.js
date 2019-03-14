@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
 	fields: [], // id, status, value
 	turn: 'cross', // zero and cross
 	gameStatus: false,
