@@ -27,8 +27,10 @@ class App extends React.Component {
 
     return (
       <div className="container">
-        <p className={turnClassName}>Ход - {this.props.turn}</p>
-        <div className="menu"><Menu chooseGamemode={this.props.chooseGamemode} /></div>
+        <div className="menu">
+          <p className={turnClassName}>Ход - {this.props.turn}</p>
+          <Menu chooseGamemode={this.props.chooseGamemode} />
+        </div>
         <Fields fields={this.props.fields} testStatus={this.props.testStatus}/>
       </div>
     )

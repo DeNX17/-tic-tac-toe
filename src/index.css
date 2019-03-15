@@ -13,6 +13,16 @@ code {
     monospace;
 }
 
+button {
+  border: none;
+  background-color: #87CEFA;
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  float: right;
+  outline: none;
+}
+
 .container {
 	max-width: 1025px;
 	margin: 0 auto;
@@ -38,6 +48,7 @@ code {
 }
 
 .cross {
+  position: relative;
 }
 
 .cross::after {
@@ -46,8 +57,12 @@ code {
   background-color: green;
   content: '';
   position: absolute;
+  top: 45%;
+  right: 0px;
+  /*
   top: 65px;
   right: 0px;
+  */
   transform: rotate(45deg);
   border-radius: 50px;
 }
@@ -58,13 +73,18 @@ code {
   background-color: green;
   content: '';
   position: absolute;
+  top: 45%;
+  left: 0px;
+  /*
   top: 65px;
   right: 0px;
+  */
   transform: rotate(-45deg);
   border-radius: 50px;
 }
 
 .zero {
+  position: relative;
 }
 
 .zero::after {
@@ -74,8 +94,12 @@ code {
   border-radius: 500px;
   content: '';
   position: absolute;
+  top: 7.5%;
+  left: 6.8%;
+  /*
   top: 10px;
   right: 10px;
+  */
 }
 
 .turn {
@@ -99,7 +123,127 @@ p {
 }
 
 .menu {
-  display: inline-block;
-  float: right;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 550px){
+  .fields {
+    width: 375px;
+  }
+  .field {
+    width: 120px;
+    height: 120px;
+  }
+
+  .btnToMenu {
+    width: 110px;
+  }
+  
+  .cross::after {
+    width: 120px;
+    height: 10px;
+  }
+  .cross::before {
+    width: 120px;
+    height: 10px;
+  }
+  
+  .zero::after {
+    width: 75px;
+    height: 75px;
+    border: 12px solid grey;
+  }
+
+
+}
+
+@media screen and (max-width: 390px){
+  .fields {
+    width: 300px;
+  }
+  .field {
+    width: 95px;
+    height: 95px;
+  }
+
+  .btnToMenu {
+    width: 110px;
+  }
+
+  .cross::after {
+    width: 95px;
+    height: 9px;
+  }
+  .cross::before {
+    width: 95px;
+    height: 9px;
+  }
+  
+  .zero::after {
+    width: 65px;
+    height: 65px;
+    border: 9px solid grey;
+  }
+}
+
+@media screen and (max-width: 315px){
+  .fields {
+    width: 255px;
+  }
+  .field {
+    width: 83px;
+    height: 83px;
+  }
+
+  .btnToMenu {
+    width: 95px;
+    height: 35px;
+  }
+
+  .cross::after {
+    width: 85px;
+    height: 7px;
+  }
+  .cross::before {
+    width: 85px;
+    height: 7px;
+  }
+  
+  .zero::after {
+    width: 55px;
+    height: 55px;
+    border: 8px solid grey;
+  }
+}
+
+@media screen and (max-width: 270px){
+  .fields {
+    width: 235px;
+  }
+  .field {
+    width: 75px;
+    height: 75px;
+  }
+
+  .btnToMenu {
+    width: 95px;
+    height: 35px;
+  }
+
+  .cross::after {
+    width: 76px;
+    height: 6px;
+  }
+  .cross::before {
+    width: 76px;
+    height: 6px;
+  }
+  
+  .zero::after {
+    width: 49px;
+    height: 49px;
+    border: 7px solid grey;
+  }
 }

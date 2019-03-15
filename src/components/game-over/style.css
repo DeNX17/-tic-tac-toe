@@ -1,3 +1,12 @@
 .result {
 	color: red;
+	font-size: 30px;
+}
+
+.GameOver {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-top: 25px;
 }

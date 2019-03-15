@@ -2,7 +2,9 @@ import React from 'react';
 
 const menu = ({chooseGamemode}) => {
 	return (
-		<button onClick={() => chooseGamemode(undefined)}>Back to menu</button>
+		<button
+			className="btnToMenu" 
+			onClick={() => chooseGamemode(undefined)}>Back to menu</button>
 	);
 }
 

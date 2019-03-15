@@ -12,7 +12,7 @@ const GameOver = ({result, restart}) => {
 	}
 
 	return (
-		<div className="container">
+		<div className="container GameOver">
 			<p className="result">{result} winner</p>
 			<button onClick={restart}>Restart</button>
 		</div>

@@ -26,7 +26,7 @@ class ChooseGamemode extends React.Component {
 			  <option value="comp">With comp</option>
 			</select>
 			<br/>
-			<button onClick={this.chooseGamemode}>Start</button>
+			<button className="btnStart" onClick={this.chooseGamemode}>Start</button>
 		</div>
 		);
 	}
