@@ -30,10 +30,17 @@ const chooseGamemode = (mode) => {
 	}
 }
 
+const getHistory = (stats) => {
+	return {
+		type: 'GET_HISTORY',
+		payload: stats
+	}
+}
 export {
 	createFields,
 	itemSelection,
 	itemSelectionComp,
 	checkWinner,
-	chooseGamemode
+	chooseGamemode,
+	getHistory
 };

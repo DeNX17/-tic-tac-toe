@@ -4,7 +4,12 @@ export const initialState = {
 	gameStatus: false,
 	gameMod: undefined,
 	testStatus: false,
-	isTurnDone: false
+	isTurnDone: false,
+	historyGames: {
+		cross: 0,
+		zero: 0,
+		draw: 0
+	}
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,9 +77,12 @@ const reducer = (state = initialState, action) => {
 		case 'CHECK_WINNER':
 			let fields = state.fields;
 			let gameStatus = state.gameStatus;
+			let history = state.historyGames;
+			let turnDefault = state.turn;
+
 			let arr = fields.filter(item => item.value === null);
 
-			if (arr.length === 0) { gameStatus = 'Draw'; }
+			if (arr.length === 0) { gameStatus = 'draw'; }
 
 			if (fields[0].value != null) {
 				if(fields[0].value === fields[1].value && fields[1].value === fields[2].value) { gameStatus = fields[0].value; }
@@ -92,9 +100,17 @@ const reducer = (state = initialState, action) => {
 				if(fields[8].value === fields[2].value && fields[2].value === fields[5].value) { gameStatus = fields[8].value; }
 				if(fields[8].value === fields[6].value && fields[6].value === fields[7].value) { gameStatus = fields[8].value; }
 			}
-	
+			
+			if(gameStatus !== state.gameStatus){
+				history[gameStatus]++;
+				turnDefault = "cross";
+				window.localStorage.setItem("history", state.historyGames);
+			}
+			
 			return {
 				...state,
+				historyGames: history,
+				turn: turnDefault,
 				gameStatus
 			}
 		
@@ -103,6 +119,14 @@ const reducer = (state = initialState, action) => {
 				...state,
 				turn: "cross",
 				gameMod: action.payload
+			}
+
+		case 'GET_HISTORY':
+			const historyGot = localStorage.getItem("history");
+			console.log(historyGot)
+			return {
+				...state,
+				historyGames: historyGot
 			}
 
 		default: 

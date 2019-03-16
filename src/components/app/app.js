@@ -1,17 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {createFields, chooseGamemode, itemSelectionComp} from '../../store/actions/';
+import {createFields, chooseGamemode, itemSelectionComp, getHistory} from '../../store/actions/';
 
 import Fields from '../fields/fields.js';
 import GameOver from '../game-over/';
 import ChooseGamemode from '../choose-gamemode/';
 import Menu from '../menu/menu.js';
+import Stats from '../stats/stats.js';
 
 class App extends React.Component {
 
   componentDidMount = () => {
     this.props.createFields();
+   /* this.props.getHistory();*/
   }
 
   render() {
@@ -29,6 +31,7 @@ class App extends React.Component {
       <div className="container">
         <div className="menu">
           <p className={turnClassName}>Ход - {this.props.turn}</p>
+          <Stats historyGames={this.props.historyGames} />
           <Menu chooseGamemode={this.props.chooseGamemode} />
         </div>
         <Fields fields={this.props.fields} testStatus={this.props.testStatus}/>
@@ -41,17 +44,19 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     createFields,
     chooseGamemode,
-    itemSelectionComp
+    itemSelectionComp,
+    getHistory
   }, dispatch)
 }
 
-const mapStateToProps = ({fields, gameStatus, turn, gameMod, testStatus}) => {
+const mapStateToProps = ({fields, gameStatus, turn, gameMod, testStatus, historyGames}) => {
   return {
     fields,
     gameStatus,
     turn,
     gameMod,
-    testStatus
+    testStatus,
+    historyGames
   };
 }
 

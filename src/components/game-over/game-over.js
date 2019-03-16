@@ -2,9 +2,9 @@ import React from 'react';
 import './style.css';
 
 const GameOver = ({result, restart}) => {
-	if (result === 'Draw') {
+	if (result === 'draw') {
 		return (
-			<div className="container">
+			<div className="container menu">
 				<p className="result">!-- DRAW --!</p>
 				<button onClick={restart}>Restart</button>
 			</div>

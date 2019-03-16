@@ -12,8 +12,10 @@ const fields = ({fields}) => {
 	}
 
 	return (
-		<div className="fields">
-			{renderFields()}
+		<div>
+			<div className="fields">
+				{renderFields()}
+			</div>
 		</div>
 	);
 }
