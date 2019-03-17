@@ -13,7 +13,7 @@ class App extends React.Component {
 
   componentDidMount = () => {
     this.props.createFields();
-   /* this.props.getHistory();*/
+    this.props.getHistory();
   }
 
   render() {

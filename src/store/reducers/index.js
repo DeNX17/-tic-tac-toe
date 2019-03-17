@@ -77,8 +77,8 @@ const reducer = (state = initialState, action) => {
 		case 'CHECK_WINNER':
 			let fields = state.fields;
 			let gameStatus = state.gameStatus;
-			let history = state.historyGames;
 			let turnDefault = state.turn;
+			let history = state.historyGames;
 
 			let arr = fields.filter(item => item.value === null);
 
@@ -104,7 +104,7 @@ const reducer = (state = initialState, action) => {
 			if(gameStatus !== state.gameStatus){
 				history[gameStatus]++;
 				turnDefault = "cross";
-				window.localStorage.setItem("history", state.historyGames);
+				window.localStorage.setItem('history', `${history.cross},${history.zero},${history.draw}`);
 			}
 			
 			return {
@@ -122,8 +122,20 @@ const reducer = (state = initialState, action) => {
 			}
 
 		case 'GET_HISTORY':
-			const historyGot = localStorage.getItem("history");
-			console.log(historyGot)
+			let historyGot = {
+				cross: 0,
+				zero: 0,
+				draw: 0
+			};
+
+			if(window.localStorage.getItem("history") !== null){
+				let historyLocal = window.localStorage.getItem("history").split(',');
+				
+				historyGot.cross = Number(historyLocal[0]);
+				historyGot.zero = Number(historyLocal[1]);
+				historyGot.draw = Number(historyLocal[2]);
+			}
+
 			return {
 				...state,
 				historyGames: historyGot

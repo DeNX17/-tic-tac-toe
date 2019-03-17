@@ -30,10 +30,9 @@ const chooseGamemode = (mode) => {
 	}
 }
 
-const getHistory = (stats) => {
+const getHistory = () => {
 	return {
-		type: 'GET_HISTORY',
-		payload: stats
+		type: 'GET_HISTORY'
 	}
 }
 export {
