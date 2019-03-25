@@ -20,7 +20,8 @@ const reducer = (state = initialState, action) => {
 			for (let i = 0; i < 9; i++) {
 				arrFields.push({
 					id: i,
-					value: null
+					value: null,
+					className: null
 				});
 			}
 			return {
@@ -36,6 +37,8 @@ const reducer = (state = initialState, action) => {
 
 			if (fieldsClone[action.payload].value === null) {
 				fieldsClone[action.payload].value = turn;
+				fieldsClone[action.payload].className = turn;
+
 				isTurnDone = true;
 				if(state.gameMod === 'player'){
 					turn = state.turn === 'cross' ? 'zero' : 'cross';
@@ -63,7 +66,8 @@ const reducer = (state = initialState, action) => {
 			let idx = arrNull[randNumber].id;
 			
 			if (isTurnDone1 === true) {
-				fieldsCloned[idx].value = 'zero';
+				fieldsCloned[idx].value = "zero";
+				fieldsCloned[idx].className = "comp";
 				isTurnDone1 = false;
 			}
 

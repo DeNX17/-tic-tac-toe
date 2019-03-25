@@ -7,10 +7,6 @@ import {itemSelection, checkWinner, itemSelectionComp} from '../../store/actions
 
 
 class FieldsItem extends React.Component {
-	componentDidMount = () => {
-		// console.log(this.props)
-	}
-
 	pick = () => {
 		this.props.itemSelection(this.props.id);
 		this.props.checkWinner();
@@ -24,7 +20,7 @@ class FieldsItem extends React.Component {
 	render () {
 		return (
 			<div className="field">
-				<div className={this.props.value} onClick={this.pick}>
+				<div className={this.props.className} onClick={this.pick}>
 				</div>
 			</div>
 		);
